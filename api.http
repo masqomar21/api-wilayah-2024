@@ -1,0 +1,19 @@
+@host = http://localhost:3000
+
+### get provinsi
+GET {{host}}/wilayah/provinsi
+
+
+### get kabupaten
+@provinsi_id = 19
+GET {{host}}/wilayah/kabupaten/{{provinsi_id}}
+
+
+### get kecamatan
+@kabupaten_id = 314
+GET {{host}}/wilayah/kecamatan/{{kabupaten_id}}
+
+
+### get kelurahan
+@kecamatan_id = 6362
+GET {{host}}/wilayah/kelurahan/{{kecamatan_id}}
