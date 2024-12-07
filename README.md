@@ -1,15 +1,38 @@
 # api_wilayah
 
+API untuk mendapatkan data wilayah Indonesia (provinsi, kabupaten, kecamatan, dan kelurahan) tahun 2024.
+
+### public API
+
+dapat di akses di
+[https://api-wliayah.vercel.app](https://api-wliayah.vercel.app)
+
+## Installation
+
 To install dependencies:
 
 ```bash
-bun install
+npm install
 ```
 
-To run:
+To run development server:
 
 ```bash
-bun run index.ts
+npm run dev
 ```
 
-This project was created using `bun init` in bun v1.1.4. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+To build for production:
+
+```bash
+npm run build
+```
+
+To run production server:
+
+```bash
+npm start
+```
+
+## API Documentation
+
+Dokumentasi lengkap untuk API ini dapat ditemukan di [Dokumentasi API](./api_documentation.md).
