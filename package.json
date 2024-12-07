@@ -1,5 +1,6 @@
 {
   "name": "api_wilayah",
+  "description": "API Wilayah Indonesia tahun 2024",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
