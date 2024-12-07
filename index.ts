@@ -17,11 +17,11 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get("/", (req: Request, res: Response) => {
-  const responseData = responseFormater(
-    200,
-    "Success",
-    "API Wilayah Indonesia"
-  );
+  const responseData = responseFormater(200, "Success", {
+    message: "Welcome to Wilayah Indonesia API",
+    documentation:
+      "https://github.com/masqomar21/api-wilayah-2024/blob/main/api_documentation.md",
+  });
   res.status(200).json(responseData);
 });
 
