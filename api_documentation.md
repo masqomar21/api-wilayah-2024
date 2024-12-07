@@ -4,7 +4,7 @@ This document outlines the API endpoints for fetching regional data (province, c
 
 ## Base URL
 
-local development server:
+local development server URL:
 
 ```
 http://localhost:3000
