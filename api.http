@@ -1,8 +1,8 @@
-@host = http://localhost:3000
+# @host = http://localhost:3000
 @host = https://api-wliayah.vercel.app
 
 ### get provincies
-GET {{host}}/region/provincies
+GET {{host}}/region/provinces
 
 ### get one province
 @provinsi_id = 19

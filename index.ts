@@ -32,7 +32,7 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).json(responseData);
 });
 
-app.get("/region/provincies", async (req: Request, res: Response) => {
+app.get("/region/provinces", async (req: Request, res: Response) => {
   const data = await getProvice();
   res.json(responseFormater(200, "Success", data));
 });
