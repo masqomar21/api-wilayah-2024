@@ -4,63 +4,67 @@ This document outlines the API endpoints for fetching regional data (province, c
 
 ## Base URL
 
-local development server URL:
+**Development Server:**
 
 ```
 http://localhost:3000
 ```
 
+**Production Server:**
+
+```
+https://api-wliayah.vercel.app
+```
+
 ## Endpoints
 
-### 1. Get Provinsi
+### 1. Get Provinces
 
 Retrieve a list of provinces.
 
 **Endpoint:**
 
 ```http
-GET /wilayah/provinsi
+GET {{host}}/region/provinces
 ```
 
 **Request Example:**
 
 ```http
-GET http://localhost:3000/wilayah/provinsi
+GET http://localhost:3000/region/provinces
 ```
 
 **Response Example:**
 
 ```json
 {
-  {
   "status": 200,
   "message": "Success",
   "data": [
     {
       "id": 1,
-      "name": "Provisi A",
+      "name": "Province A",
       "code": "00"
     },
     {
       "id": 2,
-      "name": "Provinsi B",
-      "code": "00"
+      "name": "Province B",
+      "code": "01"
     }
   ]
-  }
 }
 ```
 
 ---
 
-### 2. Get Kabupaten
+### 2. Get One Province
 
-Retrieve a list of regencies (kabupaten) within a specific province.
+Retrieve details of a specific province.
 
 **Endpoint:**
 
 ```http
-GET /wilayah/kabupaten/{provinsi_id}
+GET {{host}}/region/province/{{provinsi_id}}
 ```
 
 **Path Parameters:**
@@ -70,120 +74,228 @@ GET /wilayah/kabupaten/{provinsi_id}
 **Request Example:**
 
 ```http
-GET http://localhost:3000/wilayah/kabupaten/19
+GET http://localhost:3000/region/province/19
 ```
 
 **Response Example:**
 
 ```json
 {
-  {
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "id": 19,
+    "name": "Province A",
+    "code": "00"
+  }
+}
+```
+
+---
+
+### 3. Get Regencies / Cities
+
+Retrieve a list of regencies (kabupaten) within a specific province.
+
+**Endpoint:**
+
+```http
+GET {{host}}/region/regencies/{{provinsi_id}}
+```
+
+**Path Parameters:**
+
+- `provinsi_id`: ID of the province.
+
+**Request Example:**
+
+```http
+GET http://localhost:3000/region/regencies/19
+```
+
+**Response Example:**
+
+```json
+{
   "status": 200,
   "message": "Success",
   "data": [
     {
       "id": 57,
-      "type": "Kota",
-      "name": "Kota A",
+      "type": "City",
+      "name": "City A",
       "code": "00",
       "full_code": "1900",
       "provinsi_id": 19
     },
     {
       "id": 264,
-      "type": "Kabupaten",
-      "name": "Kabumaten B",
+      "type": "Regency",
+      "name": "Regency B",
       "code": "01",
       "full_code": "1901",
       "provinsi_id": 19
-    },
+    }
   ]
-  }
 }
 ```
 
 ---
 
-### 3. Get Kecamatan
+### 4. Get One Regency / City
 
-Retrieve a list of subdistricts (kecamatan) within a specific regency.
+Retrieve details of a specific regency or city.
 
 **Endpoint:**
 
 ```http
-GET /wilayah/kecamatan/{kabupaten_id}
+GET {{host}}/region/regency/{{kabupaten_id}}
 ```
 
 **Path Parameters:**
 
-- `kabupaten_id`: ID of the regency.
+- `kabupaten_id`: ID of the regency or city.
 
 **Request Example:**
 
 ```http
-GET http://localhost:3000/wilayah/kecamatan/314
+GET http://localhost:3000/region/regency/314
 ```
 
 **Response Example:**
 
 ```json
 {
-  {
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "id": 314,
+    "name": "City A",
+    "type": "City",
+    "code": "00",
+    "full_code": "180000",
+    "provinsi_id": 19
+  }
+}
+```
+
+---
+
+### 5. Get Districts
+
+Retrieve a list of districts (kecamatan) within a specific regency or city.
+
+**Endpoint:**
+
+```http
+GET {{host}}/region/districts/{{kabupaten_id}}
+```
+
+**Path Parameters:**
+
+- `kabupaten_id`: ID of the regency or city.
+
+**Request Example:**
+
+```http
+GET http://localhost:3000/region/districts/314
+```
+
+**Response Example:**
+
+```json
+{
   "status": 200,
   "message": "Success",
   "data": [
-   {
+    {
       "id": 258,
-      "name": "Kecamatan A",
+      "name": "District A",
       "code": "00",
       "full_code": "180000",
       "kabupaten_id": 314
     },
     {
       "id": 667,
-      "name": "Kecamatan B",
+      "name": "District B",
       "code": "01",
       "full_code": "180001",
       "kabupaten_id": 314
     }
   ]
-  }
 }
 ```
 
 ---
 
-### 4. Get Kelurahan
+### 6. Get One District
 
-Retrieve a list of villages (kelurahan) within a specific subdistrict.
+Retrieve details of a specific district (kecamatan).
 
 **Endpoint:**
 
 ```http
-GET /wilayah/kelurahan/{kecamatan_id}
+GET {{host}}/region/district/{{kecamatan_id}}
 ```
 
 **Path Parameters:**
 
-- `kecamatan_id`: ID of the subdistrict.
+- `kecamatan_id`: ID of the district.
 
 **Request Example:**
 
 ```http
-GET http://localhost:3000/wilayah/kelurahan/6362
+GET http://localhost:3000/region/district/6362
 ```
 
 **Response Example:**
 
 ```json
 {
-  {
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "id": 6362,
+    "name": "District A",
+    "code": "0000",
+    "full_code": "1804110000",
+    "kabupaten_id": 314
+  }
+}
+```
+
+---
+
+### 7. Get Villages
+
+Retrieve a list of villages (kelurahan) within a specific district.
+
+**Endpoint:**
+
+```http
+GET {{host}}/region/villages/{{kecamatan_id}}
+```
+
+**Path Parameters:**
+
+- `kecamatan_id`: ID of the district.
+
+**Request Example:**
+
+```http
+GET http://localhost:3000/region/villages/6362
+```
+
+**Response Example:**
+
+```json
+{
   "status": 200,
   "message": "Success",
   "data": [
     {
       "id": 15260,
-      "name": "Kelurahan A",
+      "name": "Village A",
       "code": "0000",
       "full_code": "1804110000",
       "pos_code": "34865",
@@ -191,13 +303,51 @@ GET http://localhost:3000/wilayah/kelurahan/6362
     },
     {
       "id": 15265,
-      "name": "Kelurahan B",
+      "name": "Village B",
       "code": "0003",
       "full_code": "1804110003",
       "pos_code": "34868",
       "kecamatan_id": 6362
-    },
+    }
   ]
+}
+```
+
+---
+
+### 8. Get One Village
+
+Retrieve details of a specific village (kelurahan).
+
+**Endpoint:**
+
+```http
+GET {{host}}/region/village/{{kelurahan_id}}
+```
+
+**Path Parameters:**
+
+- `kelurahan_id`: ID of the village.
+
+**Request Example:**
+
+```http
+GET http://localhost:3000/region/village/15260
+```
+
+**Response Example:**
+
+```json
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "id": 15260,
+    "name": "Village A",
+    "code": "0000",
+    "full_code": "1804110000",
+    "pos_code": "34865",
+    "kecamatan_id": 6362
   }
 }
 ```
@@ -206,6 +356,6 @@ GET http://localhost:3000/wilayah/kelurahan/6362
 
 ## Notes
 
-- Replace `{provinsi_id}`, `{kabupaten_id}`, and `{kecamatan_id}` with the corresponding IDs when making requests.
-- Ensure the API is running at the specified base URL before sending requests.
-- The response format is JSON, containing the `id` and `name` of the entities.
+- Replace `{{host}}` with the appropriate base URL (`http://localhost:3000` for development or `https://api-wliayah.vercel.app` for production).
+- Use the specified IDs in the endpoints to fetch targeted data.
+- All responses are in JSON format.

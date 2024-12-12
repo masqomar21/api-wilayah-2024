@@ -1,20 +1,33 @@
-# @host = http://localhost:3000
+@host = http://localhost:3000
 @host = https://api-wliayah.vercel.app
 
-### get provinsi
-GET {{host}}/wilayah/provinsi
+### get provincies
+GET {{host}}/region/provincies
 
-
-### get kabupaten
+### get one province
 @provinsi_id = 19
-GET {{host}}/wilayah/kabupaten/{{provinsi_id}}
+GET {{host}}/region/province/{{provinsi_id}}
 
+### get regencies / cities
+@provinsi_id = 19
+GET {{host}}/region/regencies/{{provinsi_id}}
 
-### get kecamatan
+### get one regency / city
 @kabupaten_id = 314
-GET {{host}}/wilayah/kecamatan/{{kabupaten_id}}
+GET {{host}}/region/regency/{{kabupaten_id}}
 
+### get districts
+@kabupaten_id = 314
+GET {{host}}/region/districts/{{kabupaten_id}}
+
+### get one district
+@kecamatan_id = 6362
+GET {{host}}/region/district/{{kecamatan_id}}
 
 ### get kelurahan
 @kecamatan_id = 6362
-GET {{host}}/wilayah/kelurahan/{{kecamatan_id}}
+GET {{host}}/region/villages/{{kecamatan_id}}
+
+### get one kelurahan
+@kelurahan_id = 6362
+GET {{host}}/region/village/{{kelurahan_id}}
