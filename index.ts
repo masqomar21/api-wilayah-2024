@@ -36,7 +36,8 @@ app.get("/", (req: Request, res: Response) => {
   const responseData = responseFormater(200, "Success", {
     message: "Welcome to Indonesia Region API",
     documentation:
-      "https://github.com/masqomar21/api-wilayah-2024/blob/main/api_documentation.md",
+      // "https://github.com/masqomar21/api-wilayah-2024/blob/main/api_documentation.md",
+      "https://www.postman.com/masqomar-publict/api-alamat/collection/tucjkej/region-api-collection",
   });
   res.status(200).json(responseData);
 });
