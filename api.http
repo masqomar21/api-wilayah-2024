@@ -1,33 +1,65 @@
-# @host = http://localhost:3000
-@host = https://api-wliayah.vercel.app
+@host = http://localhost:3000
+# @host = https://api-wliayah.vercel.app
+# @host = https://indoregion.newus.id/
 
-### get provincies
+### Get all provinces
 GET {{host}}/region/provinces
 
-### get one province
+### Get one province by ID
 @provinsi_id = 19
 GET {{host}}/region/province/{{provinsi_id}}
 
-### get regencies / cities
-@provinsi_id = 19
+### Get regencies (cities) by province ID
+@provinsi_id = 37
 GET {{host}}/region/regencies/{{provinsi_id}}
 
-### get one regency / city
+### Get one regency (city) by ID
 @kabupaten_id = 314
 GET {{host}}/region/regency/{{kabupaten_id}}
 
-### get districts
-@kabupaten_id = 314
+### Get districts by regency ID
+@kabupaten_id = 485
 GET {{host}}/region/districts/{{kabupaten_id}}
 
-### get one district
-@kecamatan_id = 6362
-GET {{host}}/region/district/{{kecamatan_id}}
+### Get one district by ID
+@kecamatan_ke_id = 6393
+GET {{host}}/region/district/{{kecamatan_ke_id}}
 
-### get kelurahan
+### Get villages (kelurahan) by district ID
 @kecamatan_id = 6362
 GET {{host}}/region/villages/{{kecamatan_id}}
 
-### get one kelurahan
+### Get one village by ID
 @kelurahan_id = 6362
 GET {{host}}/region/village/{{kelurahan_id}}
+
+
+### Get data with code
+
+### Get one province by code
+@prov_code = 16
+GET {{host}}/region/province/code/{{prov_code}}
+
+### Get regencies (cities) by province code
+@prov_code = 16
+GET {{host}}/region/regencies/code/{{prov_code}}
+
+### Get one regency (city) by code
+@kab_code = 314
+GET {{host}}/region/regency/code/{{kab_code}}
+
+### Get districts by regency code
+@kab_code = 485
+GET {{host}}/region/districts/code/{{kab_code}}
+
+### Get one district by code
+@kec_code = 6393
+GET {{host}}/region/district/code/{{kec_code}}
+
+### Get villages (kelurahan) by district code
+@kec_code = 6362
+GET {{host}}/region/villages/code/{{kec_code}}
+
+### Get one village by code
+@kel_code = 6362
+GET {{host}}/region/village/code/{{kel_code}}

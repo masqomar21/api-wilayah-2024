@@ -14,6 +14,15 @@ import {
 } from "./helper/getWilayah";
 import { type Request, type Response } from "express-serve-static-core";
 import { responseFormater } from "./helper/respose.Formater";
+import {
+  getCityByFullCode,
+  getDistrictByFullCode,
+  getListCityByProvinceCode,
+  getListDistrictByCityCode,
+  getListVillageByDistrictCode,
+  getProviceByCode,
+  getVillageByFullCode,
+} from "./helper/getWilayanByCode";
 
 dotenv.config();
 
@@ -98,6 +107,90 @@ app.get("/region/village/:kel_id", async (req: Request, res: Response) => {
     res.json(responseFormater(404, "Data not found", null));
   }
 });
+
+// by code region
+app.get(
+  "/region/province/code/:prov_code",
+  async (req: Request, res: Response) => {
+    const { prov_code } = req.params;
+    const data = await getProviceByCode(prov_code);
+
+    if (data) {
+      res.json(responseFormater(200, "Success", data));
+    } else {
+      res.json(responseFormater(404, "Data not found", null));
+    }
+  }
+);
+
+app.get(
+  "/region/regencies/code/:prov_code",
+  async (req: Request, res: Response) => {
+    const { prov_code } = req.params;
+    const data = await getListCityByProvinceCode(prov_code);
+    res.json(responseFormater(200, "Success", data));
+  }
+);
+
+app.get(
+  "/region/regency/code/:kab_code",
+  async (req: Request, res: Response) => {
+    const { kab_code } = req.params;
+    const data = await getCityByFullCode(kab_code);
+
+    if (data) {
+      res.json(responseFormater(200, "Success", data));
+    } else {
+      res.json(responseFormater(404, "Data not found", null));
+    }
+  }
+);
+
+app.get(
+  "/region/districts/code/:kab_code",
+  async (req: Request, res: Response) => {
+    const { kab_code } = req.params;
+    const data = await getListDistrictByCityCode(kab_code);
+    res.json(responseFormater(200, "Success", data));
+  }
+);
+
+app.get(
+  "/region/district/code/:kec_code",
+  async (req: Request, res: Response) => {
+    const { kec_code } = req.params;
+    const data = await getDistrictByFullCode(kec_code);
+
+    if (data) {
+      res.json(responseFormater(200, "Success", data));
+    } else {
+      res.json(responseFormater(404, "Data not found", null));
+    }
+  }
+);
+
+app.get(
+  "/region/villages/code/:kec_code",
+  async (req: Request, res: Response) => {
+    const { kec_code } = req.params;
+    const data = await getListVillageByDistrictCode(kec_code);
+    res.json(responseFormater(200, "Success", data));
+  }
+);
+
+app.get(
+  "/region/village/code/:kel_code",
+  async (req: Request, res: Response) => {
+    const { kel_code } = req.params;
+    const data = await getVillageByFullCode(kel_code);
+
+    if (data) {
+      res.json(responseFormater(200, "Success", data));
+    } else {
+      res.json(responseFormater(404, "Data not found", null));
+    }
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
